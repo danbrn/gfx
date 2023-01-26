@@ -11,8 +11,6 @@
 
 namespace gfx {
 
-constexpr uint8_t u8_max = 0xFF;
-
 template <typename T> auto vec_to_point(vec2d_t<T> const &vec) -> SDL_Point {
     return {static_cast<int>(vec.x), static_cast<int>(vec.y)};
 }
