@@ -20,11 +20,11 @@ template <typename T> auto point_to_vec(SDL_Point *point) -> vec2d_t<T> {
 }
 
 [[nodiscard]] auto world_to_window(vec2d_t<double> world_position,
-                                   rect<double> view, double window_width)
+                                   rect_t<double> view, double window_width)
     -> vec2d_t<double>;
 
 [[nodiscard]] auto window_to_world(vec2d_t<double> window_position,
-                                   rect<double> view, double window_width)
+                                   rect_t<double> view, double window_width)
     -> vec2d_t<double>;
 
 class renderer {
@@ -125,14 +125,14 @@ class renderer {
     }
 
     template <typename T>
-    void draw_texture(texture const &texture, vec2d_t<T> position, rect<T> view,
+    void draw_texture(texture const &texture, vec2d_t<T> position, rect_t<T> view,
                       bool resize = true) {
         draw_texture(texture, position, 0, {0, 0}, view, resize);
     }
 
     template <typename T>
     void draw_texture(texture const &texture, vec2d_t<T> position, double angle,
-                      vec2d_t<T> center, rect<T> view, bool resize = true) {
+                      vec2d_t<T> center, rect_t<T> view, bool resize = true) {
         SDL_Rect rect;
         auto     zoom = m_window_size.x / view.size.x;
         SDL_QueryTexture(texture.get_sdl_texture(), nullptr, nullptr, &rect.w,
